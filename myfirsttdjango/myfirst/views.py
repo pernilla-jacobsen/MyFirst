@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 
-from cats.models import Cat, CollectedCats
+from cats.models import Cat
 
 
 
