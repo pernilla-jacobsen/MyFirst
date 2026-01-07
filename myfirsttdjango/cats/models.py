@@ -1,4 +1,8 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import User
+from django.urls import reverse
+from PIL import Image
 
 
 class Cat(models.Model):
@@ -6,7 +10,9 @@ class Cat(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     breed = models.CharField(max_length=100)
-    picture_url = models.URLField(blank=True)   
+    picture = models.ImageField(default='default_cat.jpg', upload_to='cat_pics')
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name}, {self.age} years old, Breed: {self.breed}"
@@ -20,5 +26,7 @@ class Cat(models.Model):
     def meow(self):
         return "Meow! Meow!"
     
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})
 
     
