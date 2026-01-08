@@ -36,12 +36,13 @@
              
             <div class="navbar-nav">
                {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'cat-create' %}">New Cat Post</a>
                   <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                   <form action="{% url 'logout' %}" method="post" class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="nav-item nav-link btn btn-link">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-item nav-link btn btn-link">
                               Logout
-                            </button>
+                        </button>
                   </form>
                 {% else %}
                   <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
