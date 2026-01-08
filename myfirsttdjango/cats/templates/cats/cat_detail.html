@@ -1,0 +1,27 @@
+{% extends "cats/base.html" %}
+{% block content %}
+   
+    <article class="media content-section">
+         <div class="article-metadata">
+              <a class="mr-2" href="#">{{ object.author }}</a>
+              <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+               {% if object.author == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'cat-update' object.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'cat-delete' object.id %}">Delete</a>
+                </div>
+                {% endif %}
+        </div>
+        <div class="media-body">
+            
+            <h2><a class="article-title" href="#">{{ object.name }}</a></h2>
+            <p class="article-content">{{ object.name }} is a {{ object.age }} years old {{ object.breed }} who likes to play with {{ object.favorite_toy }}</p>
+            <img class="cat-img" src="{{ object.picture.url }}" alt="Picture of {{ object.name }}">
+
+        </div>
+    </article>
+
+   
+    
+    
+{% endblock content %}

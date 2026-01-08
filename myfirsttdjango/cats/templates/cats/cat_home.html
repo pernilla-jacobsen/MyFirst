@@ -2,11 +2,16 @@
 {% block content %}
     {% for cat in catList %}
     <article class="media content-section">
+         <div class="article-metadata">
+              <a class="mr-2" href="#">{{ cat.author }}</a>
+              <small class="text-muted">{{ cat.date_posted|date:"F d, Y" }}</small>
+        </div>
         <div class="media-body">
             
-            <h2><a class="article-title" href="#">{{ cat.name }}</a></h2>
-            <p class="article-content">{{ cat.name }} is a {{ cat.age }} years old {{ cat.breed }}</p>
+            <h2><a class="article-title" href="{% url 'cat-detail' cat.id %}">{{ cat.name }}</a></h2>
+            <p class="article-content">{{ cat.name }} is a {{ cat.age }} years old {{ cat.breed }} how likes to play with {{ cat.favorite_toy }}</p>
             <img class="cat-img" src="{{ cat.picture.url }}" alt="Picture of {{ cat.name }}">
+
         </div>
     </article>
 
